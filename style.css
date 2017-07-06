@@ -1,0 +1,138 @@
+
+/*定义你自己的简写*/
+@alias {
+    btl-radius: border-top-left-radius;
+    bbr-radius: border-bottom-right-radius;
+    bg-color: background-color;
+}
+.alias {
+    width: 100px;
+    height: 60px;
+    margin: 100px auto;
+    btl-radius: 10px;
+    bbr-radius: 10px;
+    bg-color: #0080ff;
+}
+
+
+
+
+/*popup*/
+.popupContainer {
+    position: fixed 0 0 0 0;
+    width: 100%;
+    height: 100%;
+    bg-color: rgba(0, 0, 0, .35);
+}
+.circle {
+    top: center;
+    left: center;
+    circle: 200px #cb4b16;
+    margin: 0 auto;
+}
+.inner {
+    top: center;
+    left: center;
+    bg-color: #fff;
+    width: 100px;
+    height: 100px;
+}
+
+
+
+
+
+/*----------------------precss------------------------------*/
+
+/*loop*/
+@for $i from 1 to 3{
+  .b-$i{
+    width:$(i)px;
+  }
+}
+
+@each $icon in (foo, bar, baz){
+  .icon-$(icon){
+    background: url('icons/$(icon).png');
+  }
+}
+
+/*mixins*/
+@define-mixin icon $name {
+  padding-left:16px;
+
+  &::after{
+    content:$(name);
+    /*background-url: url(/icon/.png);*/
+  }
+}
+.search{
+  @mixin icon "search";
+}
+.footer{
+  @mixin icon footer;
+}
+
+/*extend*/
+@define-extend bg-green{
+  background:green;
+}
+
+.notice--clear{
+  @extend bg-green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------cssnext------------------------------*/
+/* 自定义特性 */
+ :root { 
+    --heading-color: #ff0000;
+ }
+
+/* 自定义选择器 */ 
+@custom-selector :--headings h1, h2, h3, h4, h5, h6;
+
+/* 用法 */ 
+:--headings { 
+    color: var(--heading-color);
+ } 
+
+
+/*nesting*/
+a, b {
+  color:red;
+  @nest & c, & d{
+    color: white;
+  }
+  @nest & & {
+    color:blue;
+  }
+  @nest &:hover {
+    color:black;
+  }
+  @media (min-width:30em){
+    color: yellow;
+  }
+}
+
+/*autoprefixer*/
+h1{
+  display:flex;
+}
+::placeholder {
+   color : #ccc
+}
+
+
+
+
